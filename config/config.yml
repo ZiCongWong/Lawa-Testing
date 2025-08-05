@@ -14,9 +14,19 @@ users:
   - mobile: "+966512312300"
     password: "123456"
     device: "device_user_2_8d2a6c4b9e1f3a7d" # 模拟用户2的设备ID
-  # - mobile: "+966512312308"
-  #   password: "123456"
-  #   device: "device_user_3_abcdef1234567890"
+  - mobile: "+966512312305"
+    password: "123456"
+    device: "device_user_3_abcdef1234567890"
+  - mobile: "+966512312302"
+    password: "123456"
+    device: "device_user_4_abcdef1234567890"
+  - mobile: "+966512312303"
+    password: "123456"
+    device: "device_user_5_abcdef1234567890"
+  - mobile: "+966512312304"
+    password: "123456"
+    device: "device_user_6_abcdef1234567890"
+
 
 # API签名相关的密钥
 api_salt: "Hx8mN2vD4sQ6cJ9y"

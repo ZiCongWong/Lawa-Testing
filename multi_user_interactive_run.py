@@ -47,6 +47,7 @@ class UserSession:
         print(f"\n>>> [心跳线程-{self.user_id}]: 已启动")
         while not self.stop_event.is_set():
             user_api.room_heartbeat(self.token, self.user_id, self.device)
+            user_api.mic_heartbeat(self.token, self.user_id, self.device)
             self.stop_event.wait(30)
         print(f"\n>>> [心跳线程-{self.user_id}]: 已停止")
 
