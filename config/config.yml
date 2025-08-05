@@ -1,9 +1,11 @@
 base_url: "https://intest.lawa.chat"
 
-# 用户凭证 (来自 cURL)
+
 user_credentials:
   mobile: "+966512312306"
   password: "123456"
+
+roomId: "1000268"
 
 # API签名相关的密钥
 api_salt: "Hx8mN2vD4sQ6cJ9y"
