@@ -6,133 +6,76 @@ BASE_URL = config_data['base_url']
 room_id = config_data['roomId']
 
 
-def _send_request(url, payload, token, user_id, description,method):
+def _send_request(url, payload, headers, description):
     """封装通用的请求逻辑"""
-    dynamic_headers = generate_signature(body=payload)
-    headers = config_data['login_headers'].copy()
-    headers['token'] = token
-    headers['userId'] = str(user_id)
-    headers.update(dynamic_headers)
-
-    print(f"\n[请求] {description}: {url}")
-    print(f"[请求] Body: {payload}")
-
-    response = requests.request(method=method,url=url, json=payload, headers=headers)
-
+    if (description != "发送心跳"):
+        print(f"\n[请求] {description} (用户: {headers.get('userId', 'N/A')}): {url}")
+        print(f"[请求] Body: {payload}")
+    response = requests.post(url, json=payload, headers=headers)
     try:
         data = response.json()
-        print(f"[响应] {description}响应: {data}")
+        if(description != "发送心跳"):
+            print(f"[响应] {description}响应: {data}")
     except requests.exceptions.JSONDecodeError:
-        print(f"[响应] {description}响应: {response.text}")
-
+        if (description != "发送心跳"):
+            print(f"[响应] {description}响应: {response.text}")
     return response
 
-def login(mobile, raw_password):
+def _get_headers(token, user_id, device):
+    """为每个请求动态构建请求头"""
+    headers = config_data['base_headers'].copy()
+    headers['token'] = token
+    headers['userId'] = str(user_id)
+    headers['device'] = device
+    return headers
 
-    login_payload = {
-        "authType": "4",
-        "phonePasswordParam": {
-            "phone": mobile,
-            "password": get_password_md5(raw_password)
-        }
-    }
-
-
+def login(mobile, password, device):
+    """发起登录请求"""
+    login_payload = {"authType": "4", "phonePasswordParam": {"phone": mobile, "password": get_password_md5(password)}}
+    headers = _get_headers('', '0', device) # 登录时 userId 为 0, token 为空
     dynamic_headers = generate_signature(body=login_payload)
-
-
-    headers = config_data['login_headers'].copy()
     headers.update(dynamic_headers)
-
     login_url = f"{BASE_URL}/voice/user/login"
-
-    print(f"\n[请求]: {login_url}")
-    print(f"[请求]Headers: {headers}")
-    print(f"[请求]Body: {login_payload}")
-
-    response = requests.post(login_url, json=login_payload, headers=headers)
-    data = response.json()
-
-    try:
-        print(f"[响应]: {data['code']}, 内容: {data}")
-    except requests.exceptions.JSONDecodeError:
-        print(f"[响应]: {data['code']}, 内容: {data}")
-
-    return response
+    return _send_request(login_url, login_payload, headers, "登录")
 
 
-def enter_room(token,user_id):
-    enter_room_payload = {"pwd":"","roomId":room_id}
-    dynamic_headers = generate_signature(body=enter_room_payload)
-    headers = config_data['login_headers'].copy()
-    # ★★★ 关键点: 更新 header 中的 token 和 userId
-    headers['token'] = token
-    headers['userId'] = str(user_id) # userId 必须是字符串
+def enter_room(token, user_id, device):
+    """发起进入房间的请求"""
+    payload = {"pwd": "", "roomId": room_id}
+    headers = _get_headers(token, user_id, device)
+    dynamic_headers = generate_signature(body=payload)
     headers.update(dynamic_headers)
+    url = f"{BASE_URL}/voice/room/enterRoom"
+    return _send_request(url, payload, headers, "进入房间")
 
 
-    enter_room_url = f"{BASE_URL}/voice/room/enterRoom"
-
-    print(f"\n[请求] 进入房间接口: {enter_room_url}")
-    print(f"[请求] Headers: {headers}")
-    print(f"[请求] Body: {enter_room_payload}")
-
-    response = requests.post(enter_room_url, json=enter_room_payload, headers=headers)
-    data = response.json()
-
-    try:
-        print(f"[响应]: {data['code']}, 内容: {data}")
-    except requests.exceptions.JSONDecodeError:
-        print(f"[响应]: {data['code']}, 内容: {data}")
-
-    return response
-
-
-def room_heartbeat(token, user_id):
-    """
-    发送房间心跳包
-    :param token: 登录后获取的 token
-    :param user_id: 登录后获取的 userId
-    :param room_id: 进入房间后获取的 roomId
-    :return: requests的response对象
-    """
-    # 1. 构建心跳接口的请求体
-    heartbeat_payload = {"inRoom": 1, "roomId": room_id}
-
-    # 2. 调用通用签名函数
-    dynamic_headers = generate_signature(body=heartbeat_payload)
-
-    # 3. 组合完整的请求头
-    headers = config_data['login_headers'].copy()
-    headers['token'] = token
-    headers['userId'] = str(user_id)
+def room_heartbeat(token, user_id, device):
+    """发送房间心跳包"""
+    payload = {"inRoom": 1, "roomId": room_id}
+    headers = _get_headers(token, user_id, device)
+    dynamic_headers = generate_signature(body=payload)
     headers.update(dynamic_headers)
+    url = f"{BASE_URL}/voice/room/heartbeat"
+    return _send_request(url, payload, headers, "发送心跳")
 
-    # 4. 发送请求
-    heartbeat_url = f"{BASE_URL}/voice/room/heartbeat"
-    print(f"\n[请求] 发送心跳: {heartbeat_url}")
-    print(f"[请求] Body: {heartbeat_payload}")
-    response = requests.post(heartbeat_url, json=heartbeat_payload, headers=headers)
-
-    try:
-        data = response.json()
-        print(f"[响应] 心跳响应: {data}")
-    except requests.exceptions.JSONDecodeError:
-        print(f"[响应] 心跳响应: {response.text}")
-
-    return response
-
-def on_mic(token, user_id):
+def on_mic(token, user_id, device, seat_index):
     """上麦操作示例"""
-    payload = {"event": 1, "seat": 2, "roomId": room_id}
+    # ★★★ 已按你的要求更新 ★★★
+    payload = {"event": 1, "seat": seat_index, "roomId": room_id}
+    headers = _get_headers(token, user_id, device)
+    dynamic_headers = generate_signature(body=payload)
+    headers.update(dynamic_headers)
     url = f"{BASE_URL}/voice/mic/event"
-    return _send_request(url, payload, token, user_id, "上麦",method="POST")
+    return _send_request(url, payload, headers, f"上麦到座位 {seat_index}")
 
-def exit_room(token, user_id):
+def exit_room(token, user_id, device):
     """退出房间"""
     payload = {"roomId": room_id}
+    headers = _get_headers(token, user_id, device)
+    dynamic_headers = generate_signature(body=payload)
+    headers.update(dynamic_headers)
     url = f"{BASE_URL}/voice/room/quitRoom"
-    return _send_request(url, payload, token, user_id, "退出房间",method="POST")
+    return _send_request(url, payload, headers, "退出房间")
 
 
 
