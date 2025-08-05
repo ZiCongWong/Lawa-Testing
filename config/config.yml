@@ -1,0 +1,28 @@
+base_url: "https://intest.lawa.chat"
+
+# 用户凭证 (来自 cURL)
+user_credentials:
+  mobile: "+966512312306"
+  password: "123456"
+
+# API签名相关的密钥
+api_salt: "Hx8mN2vD4sQ6cJ9y"
+
+# 登录接口专用的请求头 (完整复刻自 cURL)
+# 注意: sign 和 time 是动态生成的，此处不包含
+login_headers:
+  'utcOffset': '28800'
+  'sysLang': 'en'
+  'cusLang': 'en'
+  'langCode': 'en'
+  'timeZone': 'Asia/Shanghai'
+  'pid': '2'
+  'version': '10026'
+  'userId': '0'
+  'token': '' # cURL 中的 'token;' 表示值为空
+  'countryCode': '' # cURL 中的 'countryCode;' 表示值为空
+  'device': '713777e6b591abc5e80b565006518612'
+  'Content-Type': 'application/json;charset=utf-8'
+  'Accept': '*/*'
+  'Host': 'intest.lawa.chat'
+  'Connection': 'keep-alive'
