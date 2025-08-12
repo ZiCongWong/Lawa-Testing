@@ -8,11 +8,11 @@ def heartbeat_worker(stop_event, token, user_id):
     """
     在后台线程中运行的心跳函数
     """
-    print("\n>>> [心跳线程]: 已启动，每30秒发送一次心跳...")
+    print("\n>>> [心跳线程]: 已启动，每90秒发送一次心跳...")
     while not stop_event.is_set():
         user_api.room_heartbeat(token=token, user_id=user_id)
         # 等待30秒，或者如果 stop_event 被设置，则提前退出
-        stop_event.wait(30)
+        stop_event.wait(90)
     print("\n>>> [心跳线程]: 已停止")
 
 

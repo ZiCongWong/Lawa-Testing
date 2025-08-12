@@ -10,22 +10,44 @@ roomId: "1000268"
 users:
   - mobile: "+966512312306"
     password: "123456"
-    device: "device_user_1_713777e6b591abc5" # 模拟用户1的设备ID
-  - mobile: "+966512312300"
-    password: "123456"
-    device: "device_user_2_8d2a6c4b9e1f3a7d" # 模拟用户2的设备ID
+    device: "device_user_1_713777e6b591abc5"
+#  - mobile: "+966512312300"
+#    password: "123456"
+#    device: "device_user_2_8d2a6c4b9e1f3a7d"
   - mobile: "+966512312305"
     password: "123456"
     device: "device_user_3_abcdef1234567890"
   - mobile: "+966512312302"
     password: "123456"
     device: "device_user_4_abcdef1234567890"
-  - mobile: "+966512312303"
-    password: "123456"
-    device: "device_user_5_abcdef1234567890"
-  - mobile: "+966512312304"
-    password: "123456"
-    device: "device_user_6_abcdef1234567890"
+#  - mobile: "+966512312303"
+#    password: "123456"
+#    device: "device_user_5_abcdef1234567890"
+#  - mobile: "+966512312304"
+#    password: "123456"
+#    device: "device_user_6_abcdef1234567890"
+  - mobile: "+966512312301"
+    password: "123"
+    device: "device_user_7_abcdef1234567890"
+  - mobile: "+966512312400"
+    password: "12345678"
+    device: "device_user_8_abcdef1234567890"
+  - mobile: "+966512312401"
+    password: "12345678"
+    device: "device_user_9_abcdef1234567890"
+  - mobile: "+966512312402"
+    password: "12345678"
+    device: "device_user_10_abcdef1234567890"
+#  - mobile: "+966512312403"
+#    password: "12345678"
+#    device: "device_user_11_abcdef1234567890"
+#  - mobile: "+966512312404"
+#    password: "12345678"
+#    device: "device_user_12_abcdef1234567890"
+#  - mobile: "+966512312405"
+#    password: "12345678"
+#    device: "device_user_13_abcdef1234567890"
+
 
 
 # API签名相关的密钥
@@ -49,3 +71,5 @@ base_headers:
   'Accept': '*/*'
   'Host': 'intest.lawa.chat'
   'Connection': 'keep-alive'
+
+redPacketID: '1754987420195754742'

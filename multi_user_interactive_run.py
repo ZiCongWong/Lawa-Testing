@@ -20,7 +20,7 @@ class UserSession:
         """为该用户执行登录"""
         print(f"--- 正在为用户 {self.mobile} 登录... ---")
         response = user_api.login(self.mobile, self.password, self.device)
-        if response.status_code == 200 and response.json().get('success'):
+        if response.status_code == 200 and response.json()['code'] == 200:
             data = response.json()['data']
             self.token = data['token']
             self.user_id = data['userId']
@@ -58,12 +58,15 @@ class UserSession:
             self.heartbeat_thread.join(timeout=5)
 
     def on_mic(self, seat_index):
-        # ★★★ 已按你的要求更新 ★★★
         user_api.on_mic(self.token, self.user_id, self.device, seat_index)
 
     def exit_room(self):
         user_api.exit_room(self.token, self.user_id, self.device)
         self.stop_heartbeat()
+
+    def grab_red_packet(self):
+        response = user_api.red_pack(self.token,self.user_id,self.device)
+        return response.status_code == 200 and response.json().get('success')
 
 
 def main():
@@ -113,6 +116,7 @@ def main():
             print("\n" + "-" * 50)
             print(f"当前操作用户: {selected_session.user_id}")
             print("  1. 上麦")
+            print("  2. 抢红包")
             print("  9. 退出房间")
             print("  b. 返回用户选择菜单")
             print("-" * 50)
@@ -129,7 +133,8 @@ def main():
                         break
                     except ValueError:
                         print("!!! 输入无效，请输入一个数字。")
-
+            elif action_choice == '2' :
+                selected_session.grab_red_packet()
             elif action_choice == '9':
                 selected_session.exit_room()
                 active_sessions.pop(user_index)

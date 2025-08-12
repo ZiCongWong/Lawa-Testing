@@ -86,6 +86,15 @@ def exit_room(token, user_id, device):
     url = f"{BASE_URL}/voice/room/quitRoom"
     return _send_request(url, payload, headers, "退出房间")
 
+def red_pack(token, user_id, device):
+    redPacketId = config_data['redPacketID']
+    payload = {"roomId": room_id, "redPacketId": redPacketId}
+    headers = _get_headers(token, user_id, device)
+    dynamic_headers = generate_signature(body=payload)
+    headers.update(dynamic_headers)
+    url = f"{BASE_URL}/voice/room/grabRedPacket"
+    return _send_request(url, payload, headers, "抢红包")
+
 
 
 
