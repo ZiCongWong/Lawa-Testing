@@ -5,7 +5,7 @@ user_credentials:
   mobile: "+966512312306"
   password: "123456"
 
-roomId: "1000268"
+roomId: "1000001"
 
 users:
   - mobile: "+966512312306"
@@ -17,9 +17,9 @@ users:
   - mobile: "+966512312305"
     password: "123456"
     device: "device_user_3_abcdef1234567890"
-  - mobile: "+966512312302"
-    password: "123456"
-    device: "device_user_4_abcdef1234567890"
+#  - mobile: "+966512312302"
+#    password: "123456"
+#    device: "device_user_4_abcdef1234567890"
 #  - mobile: "+966512312303"
 #    password: "123456"
 #    device: "device_user_5_abcdef1234567890"
@@ -38,23 +38,28 @@ users:
   - mobile: "+966512312402"
     password: "12345678"
     device: "device_user_10_abcdef1234567890"
-#  - mobile: "+966512312403"
-#    password: "12345678"
-#    device: "device_user_11_abcdef1234567890"
-#  - mobile: "+966512312404"
-#    password: "12345678"
-#    device: "device_user_12_abcdef1234567890"
-#  - mobile: "+966512312405"
-#    password: "12345678"
-#    device: "device_user_13_abcdef1234567890"
+  - mobile: "+966512312403"
+    password: "12345678"
+    device: "device_user_11_abcdef1234567890"
+  - mobile: "+966512312404"
+    password: "12345678"
+    device: "device_user_12_abcdef1234567890"
+  - mobile: "+966512312405"
+    password: "12345678"
+    device: "device_user_13_abcdef1234567890"
+  - mobile: "+966512312313"
+    password: "12345678"
+    device: "device_user_14_abcdef1234567890"
+  - mobile: "+966512312406"
+    password: "12345678"
+    device: "device_user_15_abcdef1234567890"
 
 
 
 # API签名相关的密钥
 api_salt: "Hx8mN2vD4sQ6cJ9y"
 
-# 登录接口专用的请求头 (完整复刻自 cURL)
-# 注意: sign 和 time 是动态生成的，此处不包含
+
 base_headers:
   'utcOffset': '28800'
   'sysLang': 'en'
@@ -71,5 +76,6 @@ base_headers:
   'Accept': '*/*'
   'Host': 'intest.lawa.chat'
   'Connection': 'keep-alive'
+
 
 redPacketID: '1754987420195754742'
