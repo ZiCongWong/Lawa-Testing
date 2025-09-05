@@ -96,5 +96,27 @@ def red_pack(token, user_id, device):
     return _send_request(url, payload, headers, "抢红包")
 
 
+def send_gifts(token, user_id, device, gift_id, global_order_id, nums, room_id, send_type=1, source=1, to_user_id_list=None):
+    """发送礼物接口"""
+    if to_user_id_list is None:
+        to_user_id_list = [room_id]  # 默认发送给房间
+    
+    payload = {
+        "giftId": gift_id,
+        "globalOrderId": global_order_id,
+        "nums": nums,
+        "roomId": room_id,
+        "sendType": send_type,
+        "source": source,
+        "toUserIdList": to_user_id_list
+    }
+    
+    headers = _get_headers(token, user_id, device)
+    dynamic_headers = generate_signature(body=payload)
+    headers.update(dynamic_headers)
+    url = f"{BASE_URL}/voice/gift/sendGifts"
+    return _send_request(url, payload, headers, f"发送礼物 (礼物ID: {gift_id}, 数量: {nums})")
+
+
 
 

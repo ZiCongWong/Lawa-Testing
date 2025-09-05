@@ -1,5 +1,6 @@
 import time
 import threading
+import uuid
 from api import user_api
 from common.yaml_handler import config_data
 
@@ -68,6 +69,43 @@ class UserSession:
         response = user_api.red_pack(self.token,self.user_id,self.device)
         return response.status_code == 200 and response.json().get('success')
 
+    def send_gifts(self, gift_id=None, nums=1, to_user_id_list=None):
+        """发送礼物"""
+        if gift_id is None:
+            gift_id = config_data['gift_config']['default_gift_id']
+        
+        if to_user_id_list is None:
+            to_user_id_list = [int(config_data['roomId'])]
+        
+        # 生成唯一的订单ID
+        global_order_id = str(uuid.uuid4()).replace('-', '')
+        
+        response = user_api.send_gifts(
+            token=self.token,
+            user_id=self.user_id,
+            device=self.device,
+            gift_id=gift_id,
+            global_order_id=global_order_id,
+            nums=nums,
+            room_id=int(config_data['roomId']),
+            send_type=config_data['gift_config']['default_send_type'],
+            source=config_data['gift_config']['default_source'],
+            to_user_id_list=to_user_id_list
+        )
+        
+        print(f"--- 用户 {self.user_id} 发送礼物响应: {response.status_code} ---")
+        if response.status_code == 200:
+            try:
+                response_data = response.json()
+                print(f"礼物发送结果: {response_data}")
+                return True
+            except:
+                print(f"响应内容: {response.text}")
+                return False
+        else:
+            print(f"发送失败: {response.text}")
+            return False
+
 
 def main():
     """主交互流程"""
@@ -117,6 +155,7 @@ def main():
             print(f"当前操作用户: {selected_session.user_id}")
             print("  1. 上麦")
             print("  2. 抢红包")
+            print("  3. 发送礼物")
             print("  9. 退出房间")
             print("  b. 返回用户选择菜单")
             print("-" * 50)
@@ -135,6 +174,48 @@ def main():
                         print("!!! 输入无效，请输入一个数字。")
             elif action_choice == '2' :
                 selected_session.grab_red_packet()
+            elif action_choice == '3':
+                # 发送礼物
+                print("\n--- 发送礼物选项 ---")
+                print("  1. 使用默认礼物 (ID: 42)")
+                print("  2. 自定义礼物参数")
+                print("  b. 返回上级菜单")
+                
+                gift_choice = input("请选择: ")
+                
+                if gift_choice == '1':
+                    # 使用默认参数发送礼物
+                    selected_session.send_gifts()
+                elif gift_choice == '2':
+                    # 自定义礼物参数
+                    try:
+                        gift_id = int(input("请输入礼物ID (默认42): ") or "42")
+                        nums = int(input("请输入礼物数量 (默认1): ") or "1")
+                        
+                        # 询问发送给谁
+                        print("发送目标:")
+                        print("  1. 发送给房间")
+                        print("  2. 发送给指定用户")
+                        target_choice = input("请选择: ")
+                        
+                        if target_choice == '1':
+                            to_user_id_list = [int(config_data['roomId'])]
+                        elif target_choice == '2':
+                            user_id_input = input("请输入目标用户ID: ")
+                            to_user_id_list = [int(user_id_input)]
+                        else:
+                            print("无效选择，使用默认发送给房间")
+                            to_user_id_list = [int(config_data['roomId'])]
+                        
+                        selected_session.send_gifts(gift_id=gift_id, nums=nums, to_user_id_list=to_user_id_list)
+                    except ValueError:
+                        print("!!! 输入无效，使用默认参数发送礼物")
+                        selected_session.send_gifts()
+                elif gift_choice.lower() == 'b':
+                    continue
+                else:
+                    print("!!! 无效选择，使用默认参数发送礼物")
+                    selected_session.send_gifts()
             elif action_choice == '9':
                 selected_session.exit_room()
                 active_sessions.pop(user_index)
