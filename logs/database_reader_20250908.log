@@ -1,0 +1,96 @@
+2025-09-08 11:41:23 - database_reader - INFO - 数据库连接成功
+2025-09-08 11:41:23 - database_reader - INFO - 查询执行成功，返回 13 条记录
+2025-09-08 11:41:24 - database_reader - INFO - 查询执行成功，返回 1 条记录
+2025-09-08 11:41:24 - database_reader - INFO - 查询执行成功，返回 408 条记录
+2025-09-08 11:50:46 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 16:58:52 - database_reader - INFO - 数据库连接成功
+2025-09-08 16:58:52 - database_reader - INFO - 查询执行成功，返回 13 条记录
+2025-09-08 16:58:52 - database_reader - INFO - 查询执行成功，返回 1 条记录
+2025-09-08 16:58:53 - database_reader - INFO - 查询执行成功，返回 480 条记录
+2025-09-08 16:59:08 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 17:04:28 - database_reader - INFO - 数据库连接成功
+2025-09-08 17:04:29 - database_reader - INFO - 查询执行成功，返回 13 条记录
+2025-09-08 17:04:29 - database_reader - INFO - 查询执行成功，返回 1 条记录
+2025-09-08 17:04:30 - database_reader - INFO - 查询执行成功，返回 480 条记录
+2025-09-08 17:05:10 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 17:06:15 - database_reader - ERROR - 查询执行失败: Cursor closed
+2025-09-08 17:09:58 - database_reader - INFO - 数据库连接成功
+2025-09-08 17:09:58 - database_reader - INFO - 查询执行成功，返回 13 条记录
+2025-09-08 17:09:58 - database_reader - INFO - 查询执行成功，返回 1 条记录
+2025-09-08 17:09:59 - database_reader - INFO - 查询执行成功，返回 480 条记录
+2025-09-08 17:10:35 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 17:10:48 - database_reader - ERROR - 查询执行失败: Cursor closed
+2025-09-08 17:12:40 - database_reader - INFO - 数据库连接成功
+2025-09-08 17:12:41 - database_reader - INFO - 查询执行成功，返回 13 条记录
+2025-09-08 17:12:41 - database_reader - INFO - 查询执行成功，返回 1 条记录
+2025-09-08 17:12:42 - database_reader - INFO - 查询执行成功，返回 480 条记录
+2025-09-08 17:12:47 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 17:12:49 - database_reader - ERROR - 查询执行失败: Cursor closed
+2025-09-08 17:13:15 - database_reader - INFO - 数据库连接成功
+2025-09-08 17:13:15 - database_reader - INFO - 查询执行成功，返回 13 条记录
+2025-09-08 17:13:15 - database_reader - INFO - 查询执行成功，返回 1 条记录
+2025-09-08 17:13:16 - database_reader - INFO - 查询执行成功，返回 480 条记录
+2025-09-08 17:13:21 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 17:13:24 - database_reader - ERROR - 查询执行失败: Cursor closed
+2025-09-08 17:26:37 - database_reader - INFO - 数据库连接成功
+2025-09-08 17:26:37 - database_reader - INFO - 查询执行成功，返回 13 条记录
+2025-09-08 17:26:37 - database_reader - INFO - 查询执行成功，返回 1 条记录
+2025-09-08 17:26:54 - database_reader - INFO - 数据库连接成功
+2025-09-08 17:26:55 - database_reader - INFO - 查询执行成功，返回 13 条记录
+2025-09-08 17:26:55 - database_reader - INFO - 查询执行成功，返回 1 条记录
+2025-09-08 17:27:04 - database_reader - ERROR - 程序执行出错: get_user_asset_logs() got an unexpected keyword argument 'start_ts'
+2025-09-08 17:27:04 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 17:38:27 - database_reader - INFO - 数据库连接成功
+2025-09-08 17:38:27 - database_reader - INFO - 查询执行成功，返回 13 条记录
+2025-09-08 17:38:28 - database_reader - INFO - 查询执行成功，返回 1 条记录
+2025-09-08 17:43:08 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 17:43:16 - database_reader - INFO - 数据库连接成功
+2025-09-08 17:43:16 - database_reader - ERROR - 程序执行出错: 'DatabaseHandler' object has no attribute 'get_table_info'
+2025-09-08 17:43:16 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 17:43:53 - database_reader - INFO - 数据库连接成功
+2025-09-08 17:43:53 - database_reader - ERROR - 程序执行出错: 'DatabaseHandler' object has no attribute 'get_table_count'
+2025-09-08 17:43:53 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 17:44:14 - database_reader - INFO - 数据库连接成功
+2025-09-08 17:44:14 - database_reader - ERROR - 程序执行出错: name 'start_ts' is not defined
+2025-09-08 17:44:14 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 17:44:56 - database_reader - INFO - 数据库连接成功
+2025-09-08 17:45:07 - database_reader - ERROR - 查询执行失败: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1757318596 \n        WHERE userId = 1000120 and createTime >= NULL\n        ORDER ' at line 1")
+2025-09-08 17:45:07 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 17:45:43 - database_reader - INFO - 数据库连接成功
+2025-09-08 17:45:47 - database_reader - ERROR - 查询执行失败: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1757318596 \n        WHERE userId = 1000120 and createTime >= NULL\n        ORDER ' at line 1")
+2025-09-08 17:45:47 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 17:46:17 - database_reader - INFO - 数据库连接成功
+2025-09-08 17:46:20 - database_reader - ERROR - 查询执行失败: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1757318596 \n        WHERE userId = 1000120 and createTime >= NULL\n        ORDER ' at line 1")
+2025-09-08 17:46:20 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 17:47:13 - database_reader - INFO - 数据库连接成功
+2025-09-08 17:47:17 - database_reader - ERROR - 查询执行失败: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1757318596 \n        WHERE userId = 1000120 and createTime >= None\n        ORDER ' at line 1")
+2025-09-08 17:47:17 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 17:48:26 - database_reader - INFO - 数据库连接成功
+2025-09-08 17:48:29 - database_reader - INFO - 查询执行成功，返回 14 条记录
+2025-09-08 17:48:43 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 17:49:46 - database_reader - INFO - 数据库连接成功
+2025-09-08 17:49:49 - database_reader - INFO - 查询执行成功，返回 14 条记录
+2025-09-08 17:49:54 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 17:58:52 - database_reader - INFO - 数据库连接成功
+2025-09-08 17:59:07 - database_reader - INFO - 查询执行成功，返回 14 条记录
+2025-09-08 17:59:15 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 18:00:13 - database_reader - INFO - 数据库连接成功
+2025-09-08 18:00:20 - database_reader - INFO - 查询执行成功，返回 14 条记录
+2025-09-08 18:00:31 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 18:02:16 - database_reader - INFO - 数据库连接成功
+2025-09-08 18:02:54 - database_reader - INFO - 查询执行成功，返回 170 条记录
+2025-09-08 18:03:25 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 18:03:28 - database_reader - INFO - 数据库连接成功
+2025-09-08 18:03:32 - database_reader - INFO - 查询执行成功，返回 0 条记录
+2025-09-08 18:03:32 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 18:05:37 - database_reader - INFO - 数据库连接成功
+2025-09-08 18:05:48 - database_reader - INFO - 查询执行成功，返回 110 条记录
+2025-09-08 18:06:14 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 18:06:18 - database_reader - INFO - 数据库连接成功
+2025-09-08 18:06:45 - database_reader - INFO - 查询执行成功，返回 30 条记录
+2025-09-08 18:12:11 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 18:12:38 - database_reader - INFO - 数据库连接成功
+2025-09-08 18:13:30 - database_reader - INFO - 查询执行成功，返回 169 条记录
+2025-09-08 18:13:40 - database_reader - INFO - 数据库连接已关闭
+2025-09-08 18:13:44 - database_reader - INFO - 数据库连接成功
+2025-09-08 18:14:03 - database_reader - INFO - 查询执行成功，返回 200 条记录

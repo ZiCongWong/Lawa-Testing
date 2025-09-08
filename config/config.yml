@@ -69,7 +69,7 @@ base_headers:
   'pid': '2'
   'version': '10026'
   'userId': '0'
-  'token': '' # cURL 中的 'token;' 表示值为空
+  'token': '' 
   'countryCode': '' # cURL 中的 'countryCode;' 表示值为空
   'device': '713777e6b591abc5e80b565006518612'
   'Content-Type': 'application/json;charset=utf-8'
@@ -90,3 +90,11 @@ gift_config:
   default_source: 1
   # 示例全局订单ID (实际使用时需要生成唯一ID)
   sample_global_order_id: "ffe0c708c750e7457fe9cecab82cfe9dd386fdf5f36b2f182f0b7a04ed8cc5e9"
+
+# 数据库配置
+database:
+  host: "43.157.7.184"
+  port: 3306
+  user: "lawa"  # 请根据实际情况修改用户名
+  password: "@admin888lawa"  # 请根据实际情况修改密码
+  database: "voice"
