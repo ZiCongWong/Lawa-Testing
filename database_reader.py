@@ -64,7 +64,7 @@ def main():
     """主程序"""
     print("=" * 60)
     print("数据库数据读取程序")
-    print("目标: 读取voice.t_user_asset_log_202509表中userId=1000120的记录")
+    print("目标: 读取voice.t_user_asset_log_202509表中记录")
     print("=" * 60)
     
     # 创建数据库处理器
@@ -76,29 +76,32 @@ def main():
         if not db_handler.connect():
             print("数据库连接失败，程序退出")
             return
+        while True:
+            start_ts = input("请输入起始时间戳（秒）: ").strip()
+            if not start_ts.isdigit():
+                print("请输入有效的时间戳（数字，单位：秒）")
+                return
+            start_ts = int(start_ts)
+            # 查询指定用户的记录
+            target_user_id = input("请输入用户ID:")
+            print(f"\n正在查询用户ID为 {target_user_id} 的记录...")
+
+            records = db_handler.get_user_asset_logs(target_user_id, start_ts=start_ts)
         
-        start_ts = input("请输入起始时间戳（秒）: ").strip()
-        if not start_ts.isdigit():
-            print("请输入有效的时间戳（数字，单位：秒）")
-            return
-        start_ts = int(start_ts)
-        # 查询指定用户的记录
-        target_user_id = 1000120
-        print(f"\n正在查询用户ID为 {target_user_id} 的记录...")
-        
-        records = db_handler.get_user_asset_logs(target_user_id, start_ts=start_ts)
-        
-        if records:
-            # 显示记录
-            display_records(records, limit=5)
-            count_num_occurrences(records)
-            
-            # 询问是否导出
-            export_choice = input(f"\n是否导出所有 {len(records)} 条记录到JSON文件? (y/n): ")
-            if export_choice.lower() in ['y', 'yes', '是']:
-                export_to_json(records)
-        else:
-            print(f"未找到用户ID为 {target_user_id} 的记录")
+            if records:
+                # 显示记录
+                display_records(records, limit=5)
+                count_num_occurrences(records)
+
+                # 询问是否导出
+                export_choice = input(f"\n是否导出所有 {len(records)} 条记录到JSON文件? (y/n): ")
+                if export_choice.lower() in ['y', 'yes', '是']:
+                    export_to_json(records)
+            else:
+                print(f"未找到用户ID为 {target_user_id} 的记录")
+            control = input("按回车键继续或按q退出")
+            if control.lower() == 'q':
+                break
     except KeyboardInterrupt:
         print("\n\n程序被用户中断")
     except Exception as e:

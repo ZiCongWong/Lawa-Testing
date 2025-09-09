@@ -66,5 +66,5 @@ class DatabaseHandler:
         if limit:
             query += f" LIMIT {limit}"
         
-        return self.execute_query(query, (user_id, start_ts))
+        return self.execute_query(query, (user_id, start_ts)) 
     
