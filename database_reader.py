@@ -125,14 +125,6 @@ def count_num_occurrences(records):
         print(f"num = {num_value} 出现 {count} 次")
     return num_counter
 
-# 在main函数中查询到records后，调用统计函数
-# 你可以在显示记录后调用
-# 例如：
-# if records:
-#     display_records(records, limit=5)
-#     count_num_occurrences(records)
-#     ...
-
 
 if __name__ == "__main__":
     main()

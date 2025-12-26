@@ -1,84 +1,85 @@
 base_url: "https://intest.lawa.chat"
 
-
 user_credentials:
   mobile: "+966512312306"
   password: "123456"
 
-roomId: "1000001"
+roomId: "1000153"
 
 users:
-  # - mobile: "+966512312306"
-  #   password: "123456"
-  #   device: "device_user_1_713777e6b591abc5"
-#  - mobile: "+966512312300"
-#    password: "123456"
-#    device: "device_user_2_8d2a6c4b9e1f3a7d"
-  # - mobile: "+966512312305"
-  #   password: "123456"
-  #   device: "device_user_3_abcdef1234567890"
-#  - mobile: "+966512312302"
-#    password: "123456"
-#    device: "device_user_4_abcdef1234567890"
-#  - mobile: "+966512312303"
-#    password: "123456"
-#    device: "device_user_5_abcdef1234567890"
- - mobile: "+966512312304"
-   password: "123456"
-   device: "device_user_6_abcdef1234567890"
-  # - mobile: "+966512312301"
-  #   password: "123"
-  #   device: "device_user_7_abcdef1234567890"
-  # - mobile: "+966512312400"
-  #   password: "12345678"
-  #   device: "device_user_8_abcdef1234567890"
-  # - mobile: "+966512312401"
-  #   password: "12345678"
-  #   device: "device_user_9_abcdef1234567890"
-  # - mobile: "+966512312402"
-  #   password: "12345678"
-  #   device: "device_user_10_abcdef1234567890"
-  # - mobile: "+966512312403"
-  #   password: "12345678"
-  #   device: "device_user_11_abcdef1234567890"
-  # - mobile: "+966512312404"
-  #   password: "12345678"
-  #   device: "device_user_12_abcdef1234567890"
-  # - mobile: "+966512312405"
-  #   password: "12345678"
-  #   device: "device_user_13_abcdef1234567890"
-  # - mobile: "+966512312313"
-  #   password: "12345678"
-  #   device: "device_user_14_abcdef1234567890"
-  # - mobile: "+966512312406"
-  #   password: "12345678"
-  #   device: "device_user_15_abcdef1234567890"
-
-
+  #   - mobile: "+966512312306"
+  #     password: "123456"
+  #     device: "device_user_1_713777e6b591abc5"
+  #   - mobile: "+966512312300"
+  #     password: "123456"
+  #     device: "device_user_2_8d2a6c4b9e1f3a7d"
+  #   - mobile: "+966512312305"
+  #     password: "123456"
+  #     device: "device_user_3_abcdef1234567890"
+  #   - mobile: "+966512312302"
+  #     password: "123456"
+  #     device: "device_user_4_abcdef1234567890"
+  #   - mobile: "+966512312303"
+  #     password: "123456"
+  #     device: "device_user_5_abcdef1234567890"
+  #   - mobile: "+966512312304"
+  #     password: "123456"
+  #     device: "device_user_6_abcdef1234567890"
+  #   - mobile: "+966512312301"
+  #     password: "123"
+  #     device: "device_user_7_abcdef1234567890"
+  #   - mobile: "+966512312400"
+  #     password: "12345678"
+  #     device: "device_user_8_abcdef1234567890"
+  #   - mobile: "+966512312401"
+  #     password: "12345678"
+  #     device: "device_user_9_abcdef1234567890"
+  #   - mobile: "+966512312402"
+  #     password: "12345678"
+  #     device: "device_user_10_abcdef1234567890"
+  - mobile: "+966512312403"
+    password: "12345678"
+    device: "device_user_11_abcdef1234567890"
+  - mobile: "+966512312404"
+    password: "12345678"
+    device: "device_user_12_abcdef1234567890"
+  - mobile: "+966512312405"
+    password: "12345678"
+    device: "device_user_13_abcdef1234567890"
+  - mobile: "+966512312313"
+    password: "12345678"
+    device: "device_user_14_abcdef1234567890"
+  - mobile: "+966512312406"
+    password: "12345678"
+    device: "device_user_15_abcdef1234567890"
+  - mobile: "+966512312500"
+    password: "123456"
+    device: "device_user_17_abcdef1234567890"
+  - mobile: "+966512345600"
+    password: "123456"
+    device: "device_user_17_abcdef1234567890"
 
 # API签名相关的密钥
 api_salt: "Hx8mN2vD4sQ6cJ9y"
 
-
 base_headers:
-  'utcOffset': '28800'
-  'sysLang': 'en'
-  'cusLang': 'en'
-  'langCode': 'en'
-  'timeZone': 'Asia/Shanghai'
-  'pid': '2'
-  'version': '10026'
-  'userId': '0'
-  'token': '' 
-  'countryCode': '' # cURL 中的 'countryCode;' 表示值为空
-  'device': '713777e6b591abc5e80b565006518612'
-  'Content-Type': 'application/json;charset=utf-8'
-  'Accept': '*/*'
-  'Host': 'intest.lawa.chat'
-  'Connection': 'keep-alive'
+  "utcOffset": "28800"
+  "sysLang": "en"
+  "cusLang": "en"
+  "langCode": "en"
+  "timeZone": "Asia/Shanghai"
+  "pid": "2"
+  "version": "10026"
+  "userId": "0"
+  "token": ""
+  "countryCode": "" # cURL 中的 'countryCode;' 表示值为空
+  "device": "713777e6b591abc5e80b565006518612"
+  "Content-Type": "application/json;charset=utf-8"
+  "Accept": "*/*"
+  "Host": "intest.lawa.chat"
+  "Connection": "keep-alive"
 
-
-redPacketID: '1754987420195754742'
+redPacketID: "1758852709565576026"
 
 # 礼物相关配置
 gift_config:
@@ -95,6 +96,6 @@ gift_config:
 database:
   host: "43.157.7.184"
   port: 3306
-  user: "lawa"  # 请根据实际情况修改用户名
-  password: "@admin888lawa"  # 请根据实际情况修改密码
+  user: "lawa" # 请根据实际情况修改用户名
+  password: "@admin888lawa" # 请根据实际情况修改密码
   database: "voice"

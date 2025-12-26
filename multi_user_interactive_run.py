@@ -1,6 +1,7 @@
 import time
 import threading
 import uuid
+import random
 from api import user_api
 from common.yaml_handler import config_data
 
@@ -16,6 +17,10 @@ class UserSession:
         self.user_id = None
         self.heartbeat_thread = None
         self.stop_event = threading.Event()
+        
+        # 礼物循环相关
+        self.gift_loop_thread = None
+        self.gift_loop_stop_event = threading.Event()
 
     def login(self):
         """为该用户执行登录"""
@@ -64,6 +69,7 @@ class UserSession:
     def exit_room(self):
         user_api.exit_room(self.token, self.user_id, self.device)
         self.stop_heartbeat()
+        self.stop_gift_loop()
 
     def grab_red_packet(self):
         response = user_api.red_pack(self.token,self.user_id,self.device)
@@ -106,6 +112,46 @@ class UserSession:
             print(f"发送失败: {response.text}")
             return False
 
+    def start_gift_loop(self, gift_id, nums, to_user_id_list, interval=2, random_target_pool=None):
+        """启动循环送礼"""
+        if self.gift_loop_thread and self.gift_loop_thread.is_alive():
+            print(f"用户 {self.user_id} 已经在循环送礼中，请先停止。")
+            return
+
+        self.gift_loop_stop_event.clear()
+        self.gift_loop_thread = threading.Thread(
+            target=self._gift_loop_worker,
+            args=(gift_id, nums, to_user_id_list, interval, random_target_pool),
+            daemon=True
+        )
+        self.gift_loop_thread.start()
+        mode_str = "随机目标" if random_target_pool else "固定目标"
+        print(f"用户 {self.user_id} 循环送礼线程已启动 ({mode_str}, 间隔 {interval}s)")
+
+    def stop_gift_loop(self):
+        """停止循环送礼"""
+        if self.gift_loop_thread:
+            self.gift_loop_stop_event.set()
+            self.gift_loop_thread.join(timeout=2)
+            self.gift_loop_thread = None
+            print(f"用户 {self.user_id} 循环送礼线程已停止")
+
+    def _gift_loop_worker(self, gift_id, nums, to_user_id_list, interval, random_target_pool):
+        while not self.gift_loop_stop_event.is_set():
+            # 确定本次发送目标
+            current_target_list = to_user_id_list
+            if random_target_pool:
+                # 从池中随机选择一个
+                current_target_list = [random.choice(random_target_pool)]
+
+            try:
+                self.send_gifts(gift_id, nums, current_target_list)
+            except Exception as e:
+                print(f"用户 {self.user_id} 循环送礼出错: {e}")
+            
+            # 等待间隔，同时支持用 stop_event 中断等待
+            self.gift_loop_stop_event.wait(interval)
+
 
 def main():
     """主交互流程"""
@@ -133,9 +179,84 @@ def main():
         for i, session in enumerate(active_sessions):
             print(f"  {i + 1}. 用户ID: {session.user_id} (手机号: {session.mobile})")
         print("  q. 退出所有用户并结束程序")
+        print("  g. [所有用户] 开启循环送礼")
+        print("  h. [所有用户] 停止循环送礼")
+        print("  r. [所有用户] 上麦并随机选中一人收礼(循环)")
         print("-" * 50)
 
-        user_choice = input("请选择要操作的用户编号 (或输入'q'退出): ")
+        user_choice = input("请选择要操作的用户编号 (或输入操作码): ")
+
+        if user_choice.lower() == 'g':
+            # 开启所有用户循环送礼
+            try:
+                print("\n--- 配置循环送礼参数 ---")
+                gift_id = int(input("请输入礼物ID (默认42): ") or "42")
+                nums = int(input("请输入每次数量 (默认1): ") or "1")
+                interval = float(input("请输入发送间隔(秒) (默认5): ") or "5")
+
+                # 询问发送给谁
+                print("发送目标:")
+                print("  1. 发送给房间 (默认)")
+                print("  2. 发送给指定用户")
+                target_choice = input("请选择: ")
+                
+                if target_choice == '2':
+                    user_id_input = input("请输入目标用户ID: ")
+                    to_user_id_list = [int(user_id_input)]
+                else:
+                    to_user_id_list = [int(config_data['roomId'])]
+
+                print(f"正在为 {len(active_sessions)} 个用户启动循环送礼...")
+                for session in active_sessions:
+                    session.start_gift_loop(gift_id, nums, to_user_id_list, interval)
+            except ValueError:
+                print("!!! 输入无效，操作取消")
+            continue
+
+        if user_choice.lower() == 'h':
+            # 停止所有用户循环送礼
+            print(f"\n正在停止所有用户的循环送礼...")
+            for session in active_sessions:
+                session.stop_gift_loop()
+            continue
+
+        if user_choice.lower() == 'r':
+            # 上麦并随机送礼
+            try:
+                print("\n--- 全员上麦并随机送礼 ---")
+                gift_id = int(input("请输入礼物ID (默认42): ") or "42")
+                nums = int(input("请输入每次数量 (默认1): ") or "1")
+                interval = float(input("请输入发送间隔(秒) (默认5): ") or "5")
+
+                # 1. 全员上麦
+                print(f"正在安排 {len(active_sessions)} 位用户上麦...")
+                for i, session in enumerate(active_sessions):
+                    # 假设麦位从 1 开始顺序排列
+                    seat_idx = i + 1
+                    try:
+                        session.on_mic(seat_idx)
+                        print(f"  用户 {session.user_id} -> 麦位 {seat_idx} (请求已发送)")
+                    except Exception as e:
+                        print(f"  用户 {session.user_id} 上麦失败: {e}")
+                
+                # 等待一会儿让上麦生效? (可选，这里不强制等待)
+                time.sleep(1) 
+
+                # 2. 准备随机池 (所有在线用户的ID)
+                all_uids = [s.user_id for s in active_sessions]
+                if not all_uids:
+                    print("!!! 没有在线用户，无法进行。")
+                    continue
+
+                # 3. 开启循环送礼 (每个人独立随机选择目标)
+                print(f"\n正在启动全员随机送礼 (用户池: {len(all_uids)} 人)...")
+                for session in active_sessions:
+                    # 传入 random_target_pool，to_user_id_list 传 None 即可
+                    session.start_gift_loop(gift_id, nums, None, interval, random_target_pool=all_uids)
+                
+            except ValueError:
+                 print("!!! 输入无效，操作取消")
+            continue
 
         if user_choice.lower() == 'q':
             break
@@ -163,7 +284,6 @@ def main():
             action_choice = input("请输入操作编号: ")
 
             if action_choice == '1':
-                # ★★★ 已按你的要求更新 ★★★
                 while True:
                     try:
                         seat_input = input("请输入要上的麦位号 (例如: 2): ")

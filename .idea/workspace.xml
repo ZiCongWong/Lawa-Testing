@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2a5ebe3-7e53-45e6-9de7-c60f2d0d94fb" name="更改" comment="更新依赖项，添加数据库日志记录功能，修改配置文件以包含数据库连接信息，调整工作区设置。">
+    <list default="true" id="f2a5ebe3-7e53-45e6-9de7-c60f2d0d94fb" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/database_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/database_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/database_reader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_gift_api.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_multi_user_gift.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/multi_user_interactive_run.py" beforeDir="false" afterPath="$PROJECT_DIR$/multi_user_interactive_run.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,27 +41,82 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.multi_user_interactive_run.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.database_reader.executor&quot;: &quot;Run&quot;,
+    &quot;Python.multi_user_interactive_run.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
+  <component name="RunManager" selected="Python.multi_user_interactive_run">
+    <configuration name="database_reader" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Lawa-testing" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/database_reader.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="multi_user_interactive_run" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Lawa-testing" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/multi_user_interactive_run.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.multi_user_interactive_run" />
+        <item itemvalue="Python.database_reader" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -86,7 +143,22 @@
       <workItem from="1756889678243" duration="681000" />
       <workItem from="1756985070946" duration="50000" />
       <workItem from="1757060886461" duration="39000" />
-      <workItem from="1757299344099" duration="13420000" />
+      <workItem from="1757299344099" duration="15314000" />
+      <workItem from="1757561458281" duration="7142000" />
+      <workItem from="1757589154739" duration="3065000" />
+      <workItem from="1757904792353" duration="15069000" />
+      <workItem from="1758092304366" duration="1459000" />
+      <workItem from="1758181928408" duration="1566000" />
+      <workItem from="1758375724037" duration="2202000" />
+      <workItem from="1758692271339" duration="3205000" />
+      <workItem from="1758852475288" duration="1634000" />
+      <workItem from="1760951805291" duration="2782000" />
+      <workItem from="1761746897270" duration="880000" />
+      <workItem from="1761756272340" duration="1916000" />
+      <workItem from="1762153151376" duration="2321000" />
+      <workItem from="1762935618685" duration="3409000" />
+      <workItem from="1763025360925" duration="30000" />
+      <workItem from="1763093160170" duration="6716000" />
     </task>
     <task id="LOCAL-00001" summary="add account">
       <option name="closed" value="true" />
@@ -104,19 +176,40 @@
       <option name="project" value="LOCAL" />
       <updated>1757330727976</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="修改数据库读取程序以支持动态输入用户ID和起始时间戳，优化查询逻辑；删除不再使用的送礼测试脚本。">
+      <option name="closed" value="true" />
+      <created>1757409082608</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1757409082608</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add account" />
     <MESSAGE value="新增发送礼物功能及相关接口，更新配置文件以支持礼物发送设置。" />
     <MESSAGE value="更新依赖项，添加数据库日志记录功能，修改配置文件以包含数据库连接信息，调整工作区设置。" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新依赖项，添加数据库日志记录功能，修改配置文件以包含数据库连接信息，调整工作区设置。" />
+    <MESSAGE value="修改数据库读取程序以支持动态输入用户ID和起始时间戳，优化查询逻辑；删除不再使用的送礼测试脚本。" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改数据库读取程序以支持动态输入用户ID和起始时间戳，优化查询逻辑；删除不再使用的送礼测试脚本。" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Lawa_testing$multi_user_interactive_run.coverage" NAME="multi_user_interactive_run 覆盖结果" MODIFIED="1756108770909" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Lawa_testing$multi_user_interactive_run.coverage" NAME="multi_user_interactive_run 覆盖结果" MODIFIED="1763093272448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Lawa_testing$database_reader.coverage" NAME="database_reader 覆盖结果" MODIFIED="1758693095751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
