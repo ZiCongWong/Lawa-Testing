@@ -68,8 +68,7 @@ def mic_heartbeat(token, user_id, device):
     return _send_request(url, payload, headers, "发送心跳")
 
 def on_mic(token, user_id, device, seat_index):
-    """上麦操作示例"""
-    # ★★★ 已按你的要求更新 ★★★
+    """上麦操作示例"""  
     payload = {"event": 1, "seat": seat_index, "roomId": room_id}
     headers = _get_headers(token, user_id, device)
     dynamic_headers = generate_signature(body=payload)
