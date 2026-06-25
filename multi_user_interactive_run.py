@@ -1,4 +1,3 @@
-import time
 import threading
 import uuid
 import random
@@ -181,7 +180,8 @@ def main():
         print("  q. 退出所有用户并结束程序")
         print("  g. [所有用户] 开启循环送礼")
         print("  h. [所有用户] 停止循环送礼")
-        print("  r. [所有用户] 上麦并随机选中一人收礼(循环)")
+        print("  m. [所有用户] 上麦")
+        print("  r. [所有用户] 随机选中一人收礼(循环)")
         print("-" * 50)
 
         user_choice = input("请选择要操作的用户编号 (或输入操作码): ")
@@ -220,35 +220,35 @@ def main():
                 session.stop_gift_loop()
             continue
 
+        if user_choice.lower() == 'm':
+            # 全员上麦
+            print("\n--- 全员上麦 ---")
+            print(f"正在安排 {len(active_sessions)} 位用户上麦...")
+            for i, session in enumerate(active_sessions):
+                # 假设麦位从 1 开始顺序排列
+                seat_idx = i + 1
+                try:
+                    session.on_mic(seat_idx)
+                    print(f"  用户 {session.user_id} -> 麦位 {seat_idx} (请求已发送)")
+                except Exception as e:
+                    print(f"  用户 {session.user_id} 上麦失败: {e}")
+            continue
+
         if user_choice.lower() == 'r':
-            # 上麦并随机送礼
+            # 随机送礼
             try:
-                print("\n--- 全员上麦并随机送礼 ---")
+                print("\n--- 随机送礼 ---")
                 gift_id = int(input("请输入礼物ID (默认42): ") or "42")
                 nums = int(input("请输入每次数量 (默认1): ") or "1")
                 interval = float(input("请输入发送间隔(秒) (默认5): ") or "5")
 
-                # 1. 全员上麦
-                print(f"正在安排 {len(active_sessions)} 位用户上麦...")
-                for i, session in enumerate(active_sessions):
-                    # 假设麦位从 1 开始顺序排列
-                    seat_idx = i + 1
-                    try:
-                        session.on_mic(seat_idx)
-                        print(f"  用户 {session.user_id} -> 麦位 {seat_idx} (请求已发送)")
-                    except Exception as e:
-                        print(f"  用户 {session.user_id} 上麦失败: {e}")
-                
-                # 等待一会儿让上麦生效? (可选，这里不强制等待)
-                time.sleep(1) 
-
-                # 2. 准备随机池 (所有在线用户的ID)
+                # 准备随机池 (所有在线用户的ID)
                 all_uids = [s.user_id for s in active_sessions]
                 if not all_uids:
                     print("!!! 没有在线用户，无法进行。")
                     continue
 
-                # 3. 开启循环送礼 (每个人独立随机选择目标)
+                # 开启循环送礼 (每个人独立随机选择目标)
                 print(f"\n正在启动全员随机送礼 (用户池: {len(all_uids)} 人)...")
                 for session in active_sessions:
                     # 传入 random_target_pool，to_user_id_list 传 None 即可

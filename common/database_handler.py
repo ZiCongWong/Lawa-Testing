@@ -55,7 +55,7 @@ class DatabaseHandler:
             logger.error(f"查询执行失败: {e}")
             return None
     
-    def get_user_asset_logs(self, user_id, table_name="t_user_asset_log_202509", limit=None, start_ts=None):
+    def get_user_asset_logs(self, user_id, table_name="t_user_asset_log_202601", limit=None, start_ts=None):
         """获取指定用户的资产日志记录"""
         query = f"""
         SELECT * FROM {table_name} 

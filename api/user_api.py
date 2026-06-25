@@ -11,7 +11,11 @@ def _send_request(url, payload, headers, description):
     if (description != "发送心跳"):
         print(f"\n[请求] {description} (用户: {headers.get('userId', 'N/A')}): {url}")
         print(f"[请求] Body: {payload}")
-    response = requests.post(url, json=payload, headers=headers)
+    proxies = {
+      "http": None,
+      "https": None,
+    }
+    response = requests.post(url, json=payload, headers=headers, proxies=proxies)
     try:
         data = response.json()
         if(description != "发送心跳"):
